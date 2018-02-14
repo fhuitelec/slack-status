@@ -9,15 +9,9 @@ import (
 	"os/user"
 )
 
-const defaultConfigPath = "/.config/config.json"
+const defaultConfigPath = "/.slack-status.json"
 
-type config struct {
-	Evaneos evaneosConfig `json:"evaneos"`
-}
-type evaneosConfig struct {
-	Slack slackConfig `json:"slack"`
-}
-type slackConfig struct {
+type slackToken struct {
 	Token string `json:"token"`
 }
 
@@ -31,6 +25,17 @@ func getUser() string {
 	return user.HomeDir
 }
 
+func askAndPersistToken(configPath string) {
+	fmt.Print("Enter legacy slack token: ")
+	var rawToken string
+	fmt.Scanln(&rawToken)
+
+	token := slackToken{rawToken}
+	tokenJSON, _ := json.Marshal(token)
+
+	ioutil.WriteFile(configPath, append(tokenJSON, []byte("\n")...), 0644)
+}
+
 // GetToken todo
 func GetToken() string {
 	configPath := getUser() + defaultConfigPath
@@ -39,7 +44,11 @@ func GetToken() string {
 	// Open our JSON file
 	jsonFile, err := os.Open(configPath)
 
-	if err != nil {
+	if err != nil && os.IsNotExist(err) {
+		askAndPersistToken(configPath)
+		defer jsonFile.Close()
+		jsonFile, err = os.Open(configPath)
+	} else if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
 	}
@@ -48,12 +57,12 @@ func GetToken() string {
 
 	// Inject JSON into type structures
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var config config
-	json.Unmarshal(byteValue, &config)
+	var slackToken slackToken
+	json.Unmarshal(byteValue, &slackToken)
 
-	if "" == config.Evaneos.Slack.Token {
-		log.Fatal(fmt.Sprintf("The following JSON structure is required for %s: .evaneos.slack.token", configPath))
+	if "" == slackToken.Token {
+		log.Fatal(fmt.Sprintf("The following JSON structure is required for %s: .token", configPath))
 	}
 
-	return config.Evaneos.Slack.Token
+	return slackToken.Token
 }
