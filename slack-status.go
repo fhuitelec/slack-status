@@ -15,7 +15,6 @@ Usage:
   slack-status --emoji=<emoji> --status=<status>
   slack-status --status=<status>
   slack-status --reset-status
-  slack-status --having-lunch
   slack-status -h | --help
 
 Options:
@@ -47,15 +46,6 @@ func processArguments(arguments map[string]interface{}) (string, string) {
 	resetStatus, ok := arguments["--reset-status"].(bool)
 	if !ok {
 		resetStatus = false
-	}
-
-	havingLunch, ok := arguments["--having-lunch"].(bool)
-	if !ok {
-		resetStatus = false
-	}
-
-	if havingLunch {
-		status, emoji = "Having lunch", ":poultry_leg:"
 	}
 
 	if resetStatus {
