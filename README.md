@@ -63,7 +63,7 @@ GOOS=darwin GOARCH=amd64 go build -o $PWD/build/slack-status-darwin-amd64
 # Clean up when you're done
 cd $HOME
 rm -rf $GOPATH/src/github.com/fhuitelec/slack-status
-$GOPATH/bin/slack-status
+rm $GOPATH/bin/slack-status
 ```
 
 ## Known limitations
