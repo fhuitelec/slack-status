@@ -7,8 +7,11 @@ This bit of CLI allows you to change your status using your command line.
 Basic usage:
 
 ```
+# Add a new Slack status using an emoji and status
 slack-status --emoji=":coffee:" --status="Coffee break"
-slack-status --reset
+# You can specify your status only, with an emoji, in which case Slack will add its own emoji (currently :speech_ballon:)
+slack-status --status="Doing something"
+# Resets your Slack status with an empty status & no emoji
 ```
 
 You will be prompted and be asked your Slack token, you can find it or issue it [here](https://api.slack.com/custom-integrations/legacy-tokens#legacy_token_generator) (make sure you have an on-going connected Slack session - i.e. you are connected to Slack).
@@ -22,6 +25,10 @@ Instead of adding your Slack token interactively, you can create the configurati
     "token": "your-token-here"
 }
 ```
+
+### Emojis
+
+Since Slack handles emojis though unique text IDs, you can use standard Slack emojis as well as your Organization's own emojis.
 
 ## Known limitations
 
