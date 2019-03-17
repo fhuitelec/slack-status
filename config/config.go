@@ -9,7 +9,7 @@ import (
 	"os/user"
 )
 
-const defaultConfigPath = "/.slack-status.json"
+const defaultConfigPath = "/config/slack-status/config.json"
 
 type slackToken struct {
 	Token string `json:"token"`
