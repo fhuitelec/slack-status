@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/docopt/docopt-go"
-	"gitlab.com/fhuitelec/slack-status/slack"
+	"github.com/fhuitelec/slack-status/slack"
 )
 
 var arguments map[string]interface{}

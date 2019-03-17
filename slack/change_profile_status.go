@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"gitlab.com/fhuitelec/slack-status/config"
+	"github.com/fhuitelec/slack-status/config"
 )
 
 type slackProfileResponse struct {
