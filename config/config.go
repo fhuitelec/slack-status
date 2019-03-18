@@ -7,9 +7,10 @@ import (
 	"log"
 	"os"
 	"os/user"
+	"path/filepath"
 )
 
-const defaultConfigPath = "/config/slack-status/config.json"
+const defaultConfigPath = "/.config/slack-status/config.json"
 
 type slackToken struct {
 	Token string `json:"token"`
@@ -32,6 +33,12 @@ func askAndPersistToken(configPath string) {
 
 	token := slackToken{rawToken}
 	tokenJSON, _ := json.Marshal(token)
+
+	configDir := filepath.Dir(configPath)
+
+	if _, err := os.Stat(configDir); os.IsNotExist(err) {
+		os.Mkdir(configDir, 0755)
+	}
 
 	ioutil.WriteFile(configPath, append(tokenJSON, []byte("\n")...), 0644)
 }

@@ -33,7 +33,7 @@ You will be prompted and be asked your Slack token, you can find it or issue it 
 
 ### Configuration
 
-Instead of adding your Slack token interactively, you can create the configuration file yourself in `~/config/slack-status/config.json` and add the token:
+Instead of adding your Slack token interactively, you can create the configuration file yourself in `~/.config/slack-status/config.json` and add the token:
 
 ```json
 {
