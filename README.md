@@ -1,3 +1,7 @@
+## ⚠️ This repository is deprecated
+
+This repository has been archived is favor of [`rockymadden/slack-cli`](https://github.com/rockymadden/slack-cli) which offers way more functionalities than this tool could ever.
+
 ## Slack status CLI
 
 This bit of CLI allows you to change your status using your command line.
