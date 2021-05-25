@@ -1,6 +1,8 @@
 ## ⚠️ This repository is deprecated
 
-This repository has been archived is favor of [`rockymadden/slack-cli`](https://github.com/rockymadden/slack-cli) which offers way more functionalities than this tool could ever.
+This repository has been sunsetted.
+
+Check out [`rockymadden/slack-cli`](https://github.com/rockymadden/slack-cli) for an alternative tool.
 
 ## Slack status CLI
 
